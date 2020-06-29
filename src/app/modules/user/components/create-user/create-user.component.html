@@ -1,0 +1,72 @@
+<form class="edit-create-form" [formGroup]="form" (ngSubmit)="submit()">
+	<h1 *ngIf="!editMode">Create new user</h1>
+	<h1 *ngIf="editMode">Edit user</h1>
+
+	<div class="form-control"
+		[ngClass]="{invalid: form.get('name').touched && form.get('name').invalid}">
+		<label for="title">Name</label>
+		<input id="title" type="text" formControlName="name">
+		<div *ngIf="form.get('name').touched && form.get('name').invalid" class="validation">
+			<small *ngIf="form.get('name').errors.required">
+				Name is required
+			</small>
+		</div>
+	</div>
+
+	<div class="form-control" [ngClass]="{invalid: form.get('username').touched && form.get('username').invalid}">
+		<label for="title">Username</label>
+		<input id="title" type="text" formControlName="username">
+		<div *ngIf="form.get('username').touched && form.get('username').invalid" class="validation">
+			<small *ngIf="form.get('username').errors.required">
+				Username is required
+			</small>
+		</div>
+	</div>
+
+	<div class="form-control">
+		<label for="title">Email</label>
+		<input id="title" type="text" formControlName="email">
+		<div *ngIf="form.get('email').touched && form.get('email').invalid" class="validation">
+			<small *ngIf="form.get('email').errors.email">
+				Invalid email
+			</small>
+		</div>
+	</div>
+
+	<div class="form-control">
+		<label for="title">Phone</label>
+		<input id="title" type="text" formControlName="phone">
+	</div>
+
+	<div class="form-control">
+		<label for="title">Website</label>
+		<input id="title" type="text" formControlName="website">
+	</div>
+	<div class="text-center-divider">
+		Address
+	</div>
+	<div class="form-control">
+		<label for="title">City</label>
+		<input id="title" type="text" [formControl]="form.controls.address.controls.city">
+	</div>
+	<div class="form-control">
+		<label for="title">Street</label>
+		<input id="title" type="text" [formControl]="form.controls.address.controls.street">
+	</div>
+	<div class="form-control">
+		<label for="title">Suite</label>
+		<input id="title" type="text" [formControl]="form.controls.address.controls.suite">
+	</div>
+	<div class="form-control">
+		<label for="title">Zipcode</label>
+		<input id="title" type="text" [formControl]="form.controls.address.controls.zipcode">
+	</div>
+
+	<button
+		type="submit"
+		class="btn btn-block btn-dark"
+		[disabled]="form.invalid">
+		<span *ngIf="!editMode">Create</span>
+		<span *ngIf="editMode">Save</span>
+	</button>
+</form>

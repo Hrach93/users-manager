@@ -1,0 +1,68 @@
+<div *ngIf="users; else loading" class="users_container">
+  <div>
+    <button class="btn btn-link btn-delete" *ngIf="checkedUsers.length" (click)="bulkDelete()">Delete</button>
+    <table *ngIf="users.length !== 0; else noUser">
+      <thead>
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>phone</th>
+        <th>Username</th>
+        <th>Website</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users; let i = index" (dblclick)="navigateToUser(user)">
+          <td>{{user.id}}
+            <input type="checkbox" (change)="checkUser($event, user)">
+          </td>
+          <td>
+            <span *ngIf="editRowIndex !== i">{{user.name}}</span>
+            <input [formControl]="form['name']" (dblclick)="$event.stopPropagation()"
+              [ngClass]="{invalid: form['name'].touched && form['name'].invalid}"
+              *ngIf="editRowIndex !== null && editRowIndex == i" id="title" type="text">
+          </td>
+          <td>
+            <span *ngIf="editRowIndex !== i">{{user.email}}</span>
+            <input [formControl]="form['email']" (dblclick)="$event.stopPropagation()"
+              *ngIf="editRowIndex !== null && editRowIndex == i" id="title" type="email">
+          </td>
+          <td>
+            <span *ngIf="editRowIndex !== i">{{user.phone}}</span>
+            <input [formControl]="form['phone']" (dblclick)="$event.stopPropagation()"
+              *ngIf="editRowIndex !== null && editRowIndex == i" id="title" type="text">
+          </td>
+          <td>
+            <span *ngIf="editRowIndex !== i">{{user.username}}</span>
+            <input [formControl]="form['username']" (dblclick)="$event.stopPropagation()"
+              [ngClass]="{invalid: form['username'].touched && form['username'].invalid}"
+              *ngIf="editRowIndex !== null && editRowIndex == i" id="title" type="text">
+          </td>
+          <td>
+            <span *ngIf="editRowIndex !== i">{{user.website}}</span>
+            <input [formControl]="form['website']" (dblclick)="$event.stopPropagation()"
+              *ngIf="editRowIndex !== null && editRowIndex == i" id="title" type="text">
+          </td>
+          <td>
+            <div *ngIf="editRowIndex !== i">
+              <button class="btn btn-link btn-edit" (click)="edit(user, i)">Edit</button>
+              <button class="btn btn-link btn-delete" (click)="delete(user, i)">Delete</button>
+            </div>
+            <div *ngIf="editRowIndex !== null && editRowIndex == i">
+              <button class="btn btn-link btn-edit" (click)="save(i)">Save</button>
+              <button class="btn btn-link btn-cancel" (click)="this.editRowIndex = null; this.form = null">Cancel</button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <ng-template #nouser>
+      <h2 class="text-center">There is no users, please create a new user</h2>
+    </ng-template>
+  </div>
+</div>
+<ng-template #loading>
+  <p class="text-center" class="loading">Loading . . .</p>
+</ng-template>
