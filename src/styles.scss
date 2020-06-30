@@ -163,7 +163,7 @@ img {
 .bg-primary,
 .badge-primary,
 .alert-primary {
-  background: #333333;
+  background: #fff;
   color: #fff;
 }
 
@@ -250,7 +250,8 @@ textarea {
   width: 100%;
   padding: 0.4rem;
   font-size: 1.2rem;
-  border: 1px solid #ccc;
+  border: 1px solid #e2e2e2;
+  border-radius: 3px;
 }
 tbody input[type='text'],tbody input[type='email']{
   width: 125px;
@@ -285,7 +286,8 @@ table th {
   z-index: 1;
   width: 100%;
   margin-bottom: 1rem;
-
+  box-shadow: 0 2px 20px 0 rgba(0,19,26,.1);
+  
   &.main {
     justify-content: center;
     border-bottom: 1px solid var(--dark-color);
@@ -296,18 +298,18 @@ table th {
   }
 
   li.active a {
-    color: #0501fb;
+    color: #247D46;
     font-weight: bold;
     cursor: default;
   }
 
   a {
-    color: #fff;
+    color: rgb(0, 0, 0);
     padding: 0.45rem;
     margin: 0 0.25rem;
 
     &:hover {
-      color: var(--light-color);
+      color: #247D46;
     }
   }
 }

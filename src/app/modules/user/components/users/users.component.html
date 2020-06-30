@@ -39,7 +39,7 @@
             <input [formControl]="form['username']" (dblclick)="$event.stopPropagation()"
               [ngClass]="{invalid: form['username'].touched && form['username'].invalid}"
               *ngIf="editRowIndex !== null && editRowIndex == i" id="title" type="text">
-          </td>
+            </td>
           <td>
             <span *ngIf="editRowIndex !== i">{{user.website}}</span>
             <input [formControl]="form['website']" (dblclick)="$event.stopPropagation()"
@@ -58,7 +58,7 @@
         </tr>
       </tbody>
     </table>
-    <ng-template #nouser>
+    <ng-template #noUser>
       <h2 class="text-center">There is no users, please create a new user</h2>
     </ng-template>
   </div>
